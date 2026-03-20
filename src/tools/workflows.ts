@@ -49,6 +49,7 @@ export const updateWorkflowSchema = z.object({
 
 export const deleteWorkflowSchema = z.object({
   workflow_id: z.string().describe('The ID of the workflow to delete'),
+  force: z.boolean().optional().describe('Force delete even if the workflow has execution history. This will permanently delete all runs and logs.'),
 });
 
 /**
@@ -789,12 +790,13 @@ export async function handleDeleteWorkflow(
   client: KeeperHubClient,
   args: z.infer<typeof deleteWorkflowSchema>
 ) {
-  await client.deleteWorkflow(args.workflow_id);
+  await client.deleteWorkflow(args.workflow_id, { force: args.force });
+  const suffix = args.force ? ' (force deleted with all execution history)' : '';
   return {
     content: [
       {
         type: 'text' as const,
-        text: `Workflow ${args.workflow_id} deleted successfully`,
+        text: `Workflow ${args.workflow_id} deleted successfully${suffix}`,
       },
     ],
   };

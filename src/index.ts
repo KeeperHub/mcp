@@ -352,13 +352,17 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
       {
         name: 'delete_workflow',
         description:
-          'Permanently delete a Web3 automation workflow. This stops all monitoring and scheduled executions.',
+          'Permanently delete a Web3 automation workflow. This stops all monitoring and scheduled executions. Use force=true to delete workflows that have execution history.',
         inputSchema: {
           type: 'object',
           properties: {
             workflow_id: {
               type: 'string',
               description: 'The ID of the workflow to delete',
+            },
+            force: {
+              type: 'boolean',
+              description: 'Force delete even if the workflow has execution history. This will permanently delete all runs and logs.',
             },
           },
           required: ['workflow_id'],
