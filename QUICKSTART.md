@@ -143,7 +143,7 @@ Once configured, you'll have access to these tools:
 - `get_workflow` - Get workflow details
 - `create_workflow` - Create new workflow (supports `project_id`, `tag_id`)
 - `update_workflow` - Update existing workflow (supports `project_id`, `tag_id`)
-- `delete_workflow` - Delete workflow
+- `delete_workflow` - Delete workflow (use `force: true` to delete with execution history)
 - `generate_workflow` - AI-powered generation
 - `execute_workflow` - Run a workflow
 - `get_execution_status` - Check execution status

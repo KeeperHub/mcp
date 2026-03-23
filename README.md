@@ -237,10 +237,11 @@ Update workflow nodes/edges.
 ```
 
 #### `delete_workflow`
-Delete a workflow.
+Delete a workflow. Returns a 409 error if the workflow has execution history unless `force` is set to `true`.
 
 **Parameters:**
 - `workflow_id` (required): The ID of the workflow to delete
+- `force` (optional): Force delete even if the workflow has execution history. Permanently deletes all runs and logs.
 
 **Example:**
 ```typescript

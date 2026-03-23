@@ -191,8 +191,9 @@ export class KeeperHubClient {
     });
   }
 
-  async deleteWorkflow(workflowId: string): Promise<void> {
-    return this.request<void>(`/api/workflows/${workflowId}`, {
+  async deleteWorkflow(workflowId: string, options?: { force?: boolean }): Promise<void> {
+    const query = options?.force ? '?force=true' : '';
+    return this.request<void>(`/api/workflows/${workflowId}${query}`, {
       method: 'DELETE',
     });
   }
