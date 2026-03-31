@@ -88,7 +88,7 @@ jobs:
 
       - name: Deploy to Kubernetes with Helm
         if: ${{ !contains(github.event.head_commit.message, '[skip deploy]') }}
-        uses: bitovi/github-actions-deploy-eks-helm@v1.2.10
+        uses: bitovi/github-actions-deploy-eks-helm@v1.2.12
         with:
           cluster-name: ${{ vars.EKS_CLUSTER_NAME }}
           config-files: ${{ vars.HELM_VALUES_PATH }}
